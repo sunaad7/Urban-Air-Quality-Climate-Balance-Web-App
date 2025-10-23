@@ -1,0 +1,42 @@
+/* Modern styling with a gradient background and clean typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #2c3e50, #34495e);
+    color: #ecf0f1;
+}
+
+.about-container {
+    text-align: center;
+    padding: 50px;
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f1c40f;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #bdc3c7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

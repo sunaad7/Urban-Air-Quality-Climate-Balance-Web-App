@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Home - UrbanNexFut{% endblock %}
+
+{% block content %}
+<style>/* General Styles */
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: black url("http://fc01.deviantart.net/fs71/f/2012/160/b/9/stars_by_paulinemoss-d52un4e.jpg");
+    animation: stars 205s linear alternate;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navbar */
+.flex {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+   
+}
+
+/* Hero Section */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 60vh;
+    padding: 20px;
+}
+
+/* Rotating Earth Container */
+.earth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Rotating Box (Earth) */
+#box {
+    background: url("https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/earth-2.jpg");
+    background-size: cover;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    animation: movimiento 5s linear infinite;
+    box-shadow: 0 0 25px rgba(255,255,255, 0.10),
+                -8px -8px 15px #000 inset,
+                2px 2px 25px #000 inset,
+                -45px -45px 25px rgba(0,0,0, 0.5) inset, 
+                25px 25px 45px rgba(0,0,0, 0.45) inset;
+    margin: 2em auto;
+    transform: rotateX(6deg) rotateY(6deg) rotateZ(6deg);
+}
+
+@keyframes movimiento {
+    0% { background-position: 0 0; }
+    100% { background-position: 355px 0; }
+}
+
+@keyframes stars {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flex {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .container {
+        height: auto;
+        padding: 30px 15px;
+    }
+
+    #box {
+        width: 150px;
+        height: 150px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+    /* body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        color: #ffffff;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+    
+    .hero {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .highlight {
+        color: #00d4ff;
+    }
+    
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        opacity: 0.8;
+    }
+    
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+    
+    .primary {
+        background: #00d4ff;
+        color: #16213e;
+    }
+    
+    .primary:hover {
+        background: #00a1cc;
+    }
+    
+    .success {
+        background: #21bf73;
+        color: #ffffff;
+    }
+    
+    .success:hover {
+        background: #1b9e5f;
+    } */
+    </style>
+    <!-- <div class="container">
+        
+        <div class="hero">
+            <div style="display: flex; flex-direction: column;">
+          <a href="about.html"></a>
+          <a href="about.html"></a>
+          <a href="about.html"></a>
+          
+        </div>
+            <h1>Welcome to <span class="highlight">UrbanNexFut</span>!</h1>
+            <p>Your AI-powered solution for monitoring and improving urban air quality.</p>
+            <div class="buttons">
+                <a href="/map" class="btn primary">View Map</a>
+                <a href="/add-zone" class="btn success">Add Green Zone</a>
+            </div>
+        </div>
+    </div> -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UrbanNexFut</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    
+        <div class="flex " style="margin: 20px; color: turquoise;">
+            <a href="/services.html" class="btn success" style="color: #90EE90;">Services</a>
+            <a href="/contact.html" class="btn primary" style="color: #90EE90;">Contact</a>
+            <a href="/add_zone" class="btn primary" style="color: #90EE90;">Add Green Zone</a>
+            <a href="/about.html" class="btn success" style="color: #90EE90;">About</a>
+            <a href="/map" class="btn primary" style="color: #90EE90;">View Map</a>
+            <!-- <a href="/add-zone" class="btn success" style="color: #90EE90;"> Add Green Zone</a> -->
+        </div>
+    
+        <!-- Rotating Box (Earth) -->
+        <div class="earth-container">
+            <div id="box"></div>
+        </div>
+    
+        <div class="container">
+            <h1  style=" background: linear-gradient(to right, #2E3192, #1BFFFF, #00C853); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold; font-size: 50px;" >Welcome to <span class="highlight">UrbanNexFut</span>!</h1>
+            <p style="color: #48dd9c;">Your AI-powered solution for monitoring and improving urban air quality.</p>
+            <!-- <div class="buttons">
+                <a href="/map" class="btn primary" style="color: #90EE90;">View Map</a>
+                <a href="/add-zone" class="btn success" style="color: #90EE90;"> Add Green Zone</a>
+            </div> -->
+        </div>
+    
+
+{% endblock %}
+ 

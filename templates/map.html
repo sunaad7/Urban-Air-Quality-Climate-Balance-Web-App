@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Interactive Map - UrbanNexFut{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Interactive Map</h1>
+        <p class="text-center">This map shows potential green zones.</p>
+
+        <!-- Loading Message -->
+        <div id="loading-message" class="text-center text-primary">
+            <strong>Loading map data...</strong>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map"></div>
+
+        <!-- Error Message (Hidden by Default) -->
+        <div id="error-message" class="alert alert-danger text-center" style="display: none;">
+             Error loading map data. Please try again later.
+        </div>
+    </div>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+        /* Ensure the map is fully visible */
+        #map {
+            height: 80vh !important;  /* Force height */
+            width: 100% !important;
+            display: block !important; /* Force display */
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #ddd; /* Temporary background to check if it's visible */
+        }
+
+        /* Ensure the container is large enough */
+        .container {
+            max-width: 1200px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Initializing Map...");
+
+            var map = L.map('map').setView([28.6139, 77.2090], 12);
+
+            // Add OpenStreetMap tiles
+            var tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            // Debug: Check if tiles are loading
+            tileLayer.on("tileerror", function (error) {
+                console.error("Error loading tiles:", error);
+                alert("Error loading map tiles! Check internet connection or API availability.");
+            });
+
+            // Fetch green zones dynamically from Flask API
+            fetch('/reen-zones')
+                .then(response => {
+                    console.log("Fetching data from API...");
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Fetched Data:", data);
+                    
+                    document.getElementById("loading-message").style.display = "none";
+                    document.getElementById("map").style.display = "block";
+
+                    if (data.length === 0) {
+                        console.warn("No green zones found!");
+                    }
+
+                    data.forEach(area => {
+                        L.marker([area.lat, area.lon]).addTo(map)
+                            .bindPopup(`<b>${area.name}</b><br>Potential Greening Area.`);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    document.getElementById("error-message").style.display = "block";
+                    document.getElementById("loading-message").style.display = "none";
+                });
+        });
+    </script>
+{% endblock %}
